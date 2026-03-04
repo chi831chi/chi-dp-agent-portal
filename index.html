@@ -22,17 +22,34 @@
     }
 
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--ink);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+
+    /* ✅ EXACT background method from your snippet */
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+
       background:
-        radial-gradient(800px 500px at 18% 20%, rgba(20,184,166,.18), rgba(20,184,166,0) 60%),
-        radial-gradient(900px 600px at 78% 30%, rgba(15,118,110,.14), rgba(15,118,110,0) 58%),
-        linear-gradient(135deg, #eef9f6, #fbfdfc);
+        url('https://images.pexels.com/photos/29485645/pexels-photo-29485645/free-photo-of-person-using-smartphone-and-laptop-in-office-setting.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+          center/cover no-repeat fixed,
+        linear-gradient(135deg,#eef9f6 0%,#fbfdfc 100%);
+
+      background-blend-mode:overlay;
+      position:relative;
+      overflow-x:hidden;
+    }
+
+    /* ✅ EXACT transparency layer from your snippet */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:rgba(238,249,246,0.12);
+      z-index:-1;
+      pointer-events:none;
     }
 
     header {
@@ -41,7 +58,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      background: white;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--stroke);
     }
 
@@ -60,406 +78,407 @@
       background: transparent;
     }
 
-    .brand-text {
-      line-height: 1.1;
+    .brand-text { line-height: 1.1; }
+
+    .brand-text .name{
+      font-weight:600;
+      letter-spacing:.2px;
+      font-size:22px;
     }
 
-    .brand-text .name {
-      font-weight: 600;
-      letter-spacing: .2px;
-      font-size: 22px;
+    .brand-text .slogan{
+      font-size:13px;
+      font-style:italic;
+      color:var(--muted);
+      margin-top:4px;
     }
 
-    .brand-text .slogan {
-      font-size: 13px;
-      font-style: italic;
-      color: var(--muted);
-      margin-top: 4px;
+    .brand-text .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:6px;
     }
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+    nav{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
-    .pill {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(20,184,166,.22);
-      background: rgba(255,255,255,.75);
-      color: var(--muted);
-      font-size: 13px;
-      box-shadow: 0 14px 30px rgba(0,0,0,.06);
-      white-space: nowrap;
+    .pill{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(20,184,166,.22);
+      background:rgba(255,255,255,.75);
+      color:var(--muted);
+      font-size:13px;
+      box-shadow:0 14px 30px rgba(0,0,0,.06);
+      white-space:nowrap;
     }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal), var(--teal2));
-      box-shadow: 0 0 0 4px rgba(20,184,166,.18);
-      flex: none;
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--teal), var(--teal2));
+      box-shadow:0 0 0 4px rgba(20,184,166,.18);
+      flex:none;
     }
 
-    .cta {
-      margin-left: 6px;
-      border: 1px solid rgba(15,118,110,.22);
-      background: linear-gradient(135deg, rgba(15,118,110,.10), rgba(20,184,166,.10));
-      color: var(--ink);
-      padding: 10px 14px;
-      border-radius: 14px;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      transition: .2s ease;
-      white-space: nowrap;
+    .cta{
+      margin-left:6px;
+      border:1px solid rgba(15,118,110,.22);
+      background:linear-gradient(135deg, rgba(15,118,110,.10), rgba(20,184,166,.10));
+      color:var(--ink);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:600;
+      font-size:13px;
+      cursor:pointer;
+      transition:.2s ease;
+      white-space:nowrap;
     }
 
-    .cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 38px rgba(0,0,0,.10);
+    .cta:hover{
+      transform:translateY(-1px);
+      box-shadow:0 18px 38px rgba(0,0,0,.10);
     }
 
-    .wrap {
-      flex: 1;
-      padding: 34px 18px 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 60px;
+    .wrap{
+      flex:1;
+      padding:34px 18px 80px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:60px;
     }
 
-    .card {
-      width: 100%;
-      max-width: 520px;
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      overflow: hidden;
-      position: relative;
+    .card{
+      width:100%;
+      max-width:520px;
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+      overflow:hidden;
+      position:relative;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: -120px -80px auto -80px;
-      height: 220px;
-      background: radial-gradient(closest-side, rgba(20,184,166,.22), rgba(20,184,166,0));
-      pointer-events: none;
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-120px -80px auto -80px;
+      height:220px;
+      background:radial-gradient(closest-side, rgba(20,184,166,.22), rgba(20,184,166,0));
+      pointer-events:none;
     }
 
-    .card-head {
-      padding: 28px 30px 14px;
+    .card-head{ padding:28px 30px 14px; }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(15,118,110,.18);
+      background:rgba(255,255,255,.75);
+      color:#345b55;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
     }
 
-    .kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,118,110,.18);
-      background: rgba(255,255,255,.75);
-      color: #345b55;
-      font-size: 12px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+    .kicker .kdot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--teal), var(--teal2));
     }
 
-    .kicker .kdot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal), var(--teal2));
+    h1{
+      font-family:"Playfair Display", serif;
+      margin:18px 0 8px;
+      font-size:30px;
+      letter-spacing:.2px;
     }
 
-    h1 {
-      font-family: "Playfair Display", serif;
-      margin: 18px 0 8px;
-      font-size: 30px;
-      letter-spacing: .2px;
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:14.5px;
+      line-height:1.55;
     }
 
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14.5px;
-      line-height: 1.55;
+    .form{
+      padding:18px 30px 30px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
     }
 
-    .form {
-      padding: 18px 30px 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    label{
+      font-size:12px;
+      color:#45635e;
+      font-weight:600;
+      margin-bottom:6px;
+      display:block;
     }
 
-    label {
-      font-size: 12px;
-      color: #45635e;
-      font-weight: 600;
-      margin-bottom: 6px;
-      display: block;
+    .field{
+      width:100%;
+      padding:14px 14px;
+      border-radius:12px;
+      border:1px solid rgba(18,58,52,.14);
+      background:rgba(255,255,255,.92);
+      outline:none;
+      font-size:14px;
+      transition:.18s ease;
     }
 
-    .field {
-      width: 100%;
-      padding: 14px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(18,58,52,.14);
-      background: rgba(255,255,255,.92);
-      outline: none;
-      font-size: 14px;
-      transition: .18s ease;
+    .field:focus{
+      border-color:rgba(15,118,110,.55);
+      box-shadow:0 0 0 3px rgba(20,184,166,.16);
     }
 
-    .field:focus {
-      border-color: rgba(15,118,110,.55);
-      box-shadow: 0 0 0 3px rgba(20,184,166,.16);
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:2px;
+      flex-wrap:wrap;
     }
 
-    .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 2px;
-      flex-wrap: wrap;
+    .check{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#4e6b66;
+      font-size:13px;
+      user-select:none;
     }
 
-    .check {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #4e6b66;
-      font-size: 13px;
-      user-select: none;
+    .check input{
+      width:16px;
+      height:16px;
+      accent-color:var(--teal);
     }
 
-    .check input {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--teal);
+    .link{
+      color:var(--teal);
+      text-decoration:none;
+      font-size:13px;
+      font-weight:600;
     }
 
-    .link {
-      color: var(--teal);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
+    .link:hover{ text-decoration:underline; }
+
+    .btn{
+      margin-top:6px;
+      width:100%;
+      padding:14px 16px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--teal), var(--teal2));
+      color:white;
+      font-weight:700;
+      font-size:14px;
+      cursor:pointer;
+      transition:.2s ease;
+      box-shadow:0 18px 36px rgba(15,118,110,.18);
     }
 
-    .link:hover {
-      text-decoration: underline;
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:.96;
     }
 
-    .btn {
-      margin-top: 6px;
-      width: 100%;
-      padding: 14px 16px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--teal), var(--teal2));
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      transition: .2s ease;
-      box-shadow: 0 18px 36px rgba(15,118,110,.18);
+    .card-foot{
+      border-top:1px solid rgba(18,58,52,.10);
+      background:rgba(255,255,255,.70);
+      padding:14px 18px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:#56706b;
+      font-size:12.5px;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-      opacity: .96;
+    .card-foot a{
+      color:var(--teal);
+      font-weight:600;
+      text-decoration:none;
     }
 
-    .card-foot {
-      border-top: 1px solid rgba(18,58,52,.10);
-      background: rgba(255,255,255,.70);
-      padding: 14px 18px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: #56706b;
-      font-size: 12.5px;
+    .card-foot a:hover{ text-decoration:underline; }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:24px;
+      width:100%;
+      max-width:1100px;
+      padding:0 20px;
     }
 
-    .card-foot a {
-      color: var(--teal);
-      font-weight: 600;
-      text-decoration: none;
+    .feature-card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      padding:32px 24px;
+      box-shadow:var(--shadow);
+      text-align:center;
+      transition:transform .3s ease, box-shadow .3s ease;
+      backdrop-filter:blur(8px);
     }
 
-    .card-foot a:hover {
-      text-decoration: underline;
+    .feature-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 28px 70px rgba(0,0,0,.12);
     }
 
-    /* FEATURE CARDS */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      width: 100%;
-      max-width: 1100px;
-      padding: 0 20px;
+    .feature-icon{
+      font-size:48px;
+      margin-bottom:20px;
+      display:block;
+      line-height:1;
     }
 
-    .feature-card {
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      padding: 32px 24px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: transform .3s ease, box-shadow .3s ease;
-      backdrop-filter: blur(8px);
+    .feature-title{
+      font-size:18px;
+      font-weight:600;
+      margin:0 0 10px;
+      color:var(--ink);
+      text-transform:capitalize;
     }
 
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 28px 70px rgba(0,0,0,.12);
+    .feature-desc{
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.5;
     }
 
-    .feature-icon {
-      font-size: 48px;
-      margin-bottom: 20px;
-      display: block;
-      line-height: 1;
+    .tip{
+      margin-top:32px;
+      text-align:center;
+      font-size:13.5px;
+      color:var(--muted);
+      font-style:italic;
+      max-width:720px;
+      line-height:1.6;
     }
 
-    .feature-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0 0 10px;
-      color: var(--ink);
-      text-transform: capitalize; /* Ensures proper title case */
+    footer{
+      padding:18px 20px 26px;
+      text-align:center;
+      color:#6b8a85;
+      font-size:13px;
+      margin-top:auto;
     }
 
-    .feature-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .tip {
-      margin-top: 32px;
-      text-align: center;
-      font-size: 13.5px;
-      color: var(--muted);
-      font-style: italic;
-      max-width: 720px;
-      line-height: 1.6;
-    }
-
-    footer {
-      padding: 18px 20px 26px;
-      text-align: center;
-      color: #6b8a85;
-      font-size: 13px;
-      margin-top: auto;
-    }
-
-    @media (max-width: 720px) {
-      header { padding: 18px 18px 10px; flex-direction: column; align-items: flex-start; }
-      .features { grid-template-columns: 1fr; }
+    @media (max-width:720px){
+      header{ padding:18px 18px 10px; flex-direction:column; align-items:flex-start; }
+      .features{ grid-template-columns:1fr; }
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="brand">
-      <img src="logo.png" alt="Chi Device Protection logo" />
-      <div class="brand-text">
-        <div class="name">Chi Device Protection</div>
-        <div class="slogan">Keeping Life's Energy Connected and Secure.</div>
-        <div class="sub">Agent Portal</div>
-      </div>
+<header>
+  <div class="brand">
+    <img src="logo.png" alt="Chi Device Protection logo" />
+    <div class="brand-text">
+      <div class="name">Chi Device Protection</div>
+      <div class="slogan">Keeping Life's Energy Connected and Secure.</div>
+      <div class="sub">Agent Portal</div>
+    </div>
+  </div>
+
+  <nav aria-label="Primary navigation">
+    <div class="pill">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Coverage starts instantly • Calm support 24/7</span>
+    </div>
+    <button class="cta" type="button" onclick="toast('Need access? Email support@chideviceprotection.com')">
+      Need Access?
+    </button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="card" aria-label="Agent sign-in">
+    <div class="card-head">
+      <div class="kicker"><span class="kdot" aria-hidden="true"></span> Chi Device Protection • Agent Portal</div>
+      <h1>Agent Sign In</h1>
+      <p class="subtitle">
+        Welcome back. Sign in to enroll customers, manage coverage, and support claims with a calm, streamlined workflow.
+      </p>
     </div>
 
-    <nav aria-label="Primary navigation">
-      <div class="pill">
-        <span class="dot"></span>
-        <span>Coverage starts instantly • Calm support 24/7</span>
+    <form class="form" onsubmit="event.preventDefault(); toast('Signed in successfully (demo).');">
+      <div>
+        <label for="email">Email Address</label>
+        <input id="email" class="field" type="email" placeholder="agent@agency.com" required>
       </div>
-      <button class="cta" onclick="toast('Need access? Email support@chideviceprotection.com')">Need Access?</button>
-    </nav>
-  </header>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" class="field" type="password" placeholder="Enter your password" required>
+      </div>
+      <div class="row">
+        <label class="check">
+          <input type="checkbox" checked> Remember me
+        </label>
+        <a class="link" href="#" onclick="toast('Password reset link sent (demo).'); return false;">Forgot password?</a>
+      </div>
+      <button class="btn" type="submit">Sign In</button>
+    </form>
 
-  <main class="wrap">
-    <!-- Login Card -->
-    <section class="card" aria-label="Agent sign-in">
-      <div class="card-head">
-        <div class="kicker"><span class="kdot"></span> Chi Device Protection • Agent Portal</div>
-        <h1>Agent Sign In</h1>
-        <p class="subtitle">
-          Welcome back. Sign in to enroll customers, manage coverage, and support claims with a calm, streamlined workflow.
-        </p>
-      </div>
-
-      <form class="form" onsubmit="event.preventDefault(); toast('Signed in successfully (demo)');">
-        <div>
-          <label for="email">Email Address</label>
-          <input id="email" class="field" type="email" placeholder="agent@agency.com" required>
-        </div>
-        <div>
-          <label for="password">Password</label>
-          <input id="password" class="field" type="password" placeholder="Enter your password" required>
-        </div>
-        <div class="row">
-          <label class="check">
-            <input type="checkbox" checked> Remember me
-          </label>
-          <a class="link" href="#" onclick="toast('Password reset link sent (demo)'); return false;">Forgot password?</a>
-        </div>
-        <button class="btn" type="submit">Sign In</button>
-      </form>
-
-      <div class="card-foot">
-        <span>New agent? <a href="#" onclick="toast('Onboarding request opened (demo)'); return false;">Request onboarding</a></span>
-        <span>Having trouble? <a href="#" onclick="toast('Chat support opened (demo)'); return false;">Chat with support</a></span>
-      </div>
-    </section>
-
-    <!-- FEATURE CARDS – Corrected grammar, capitalization, and punctuation -->
-    <div class="features">
-      <div class="feature-card">
-        <span class="feature-icon">⏱️</span>
-        <div class="feature-title">Instant Activation</div>
-        <div class="feature-desc">Coverage begins the moment enrollment completes.</div>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🛡️</span>
-        <div class="feature-title">Secure + Simple</div>
-        <div class="feature-desc">Agent-first flows with fewer clicks and fewer mistakes.</div>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">💬</span>
-        <div class="feature-title">Support That Calms</div>
-        <div class="feature-desc">24/7 help so you and customers stay steady.</div>
-      </div>
+    <div class="card-foot">
+      <span>New agent? <a href="#" onclick="toast('Onboarding request opened (demo).'); return false;">Request onboarding</a></span>
+      <span>Having trouble? <a href="#" onclick="toast('Chat support opened (demo).'); return false;">Chat with support</a></span>
     </div>
+  </section>
 
-    <p class="tip">Tip: use your agent email or phone. If you forgot your password, reset takes under a minute.</p>
-  </main>
+  <div class="features">
+    <div class="feature-card">
+      <span class="feature-icon">⏱️</span>
+      <div class="feature-title">Instant Activation</div>
+      <div class="feature-desc">Coverage begins the moment enrollment completes.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛡️</span>
+      <div class="feature-title">Secure + Simple</div>
+      <div class="feature-desc">Agent-first flows with fewer clicks and fewer mistakes.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💬</span>
+      <div class="feature-title">Support That Calms</div>
+      <div class="feature-desc">24/7 help so you and customers stay steady.</div>
+    </div>
+  </div>
 
-  <footer>
-    © 2026 Chi Device Protection. All rights reserved.
-  </footer>
+  <p class="tip">Tip: use your agent email or phone. If you forgot your password, reset takes under a minute.</p>
+</main>
 
-  <script>
-    function toast(message){
-      let el = document.createElement('div');
+<footer>
+  © 2026 Chi Device Protection. All rights reserved.
+</footer>
+
+<script>
+  function toast(message){
+    let el = document.getElementById('toast');
+    if(!el){
+      el = document.createElement('div');
+      el.id = 'toast';
       el.style.position = 'fixed';
       el.style.left = '50%';
       el.style.bottom = '30px';
@@ -475,13 +494,19 @@
       el.style.whiteSpace = 'nowrap';
       el.style.opacity = '0';
       el.style.transition = 'all .25s ease';
-      el.textContent = message;
       document.body.appendChild(el);
-
-      setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateX(-50%) translateY(-8px)'; }, 10);
-      setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateX(-50%)'; }, 2800);
-      setTimeout(() => el.remove(), 3200);
     }
-  </script>
+    el.textContent = message;
+    requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateX(-50%) translateY(-8px)';
+    });
+    setTimeout(() => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(-50%)';
+    }, 2800);
+  }
+</script>
+
 </body>
 </html>
